@@ -11,6 +11,7 @@ import FourOhFour from "./components/FourOhFour";
 import Articles from "./containers/Articles";
 import Article from "./containers/Article";
 import Add from "./containers/Add";
+import Edit from "./containers/Edit";
 
 const App = () => (
     <div>
@@ -21,7 +22,7 @@ const App = () => (
         <Switch>
             { /* the articles list */ }
             <Route exact path="/" component={ Articles } />
-            
+
             { /* show the add form - has to come before :id so "add" doesn't get treated as an id  */ }
             <Route exact path="/articles/add" component={ Add } />
 
@@ -30,14 +31,15 @@ const App = () => (
                 <Article id={ match.params.id } />
             )} />
 
+            <Route exact path="/articles/:id/edit" render={ ({ match }) => (
+                <Edit id={ match.params.id } />
+            )} />
+
             { /* 404 page */}
             <Route component={ FourOhFour } />
         </Switch>
 
     </div>
 );
-
-
-
 
 export default App;
